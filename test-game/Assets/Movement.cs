@@ -16,7 +16,9 @@ public class Movement : MonoBehaviour
     public Sprite left1;
     public Sprite left2;
     public Sprite up1;
+    public Sprite up2;
     public Sprite down1;
+    public Sprite down2;
 
 
 
@@ -37,7 +39,7 @@ public class Movement : MonoBehaviour
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
 
         animationCycle += 1;
-        if (animationCycle >= 10){
+        if (animationCycle >= 20){
             animationFrame = !animationFrame;
             animationCycle = 0;
         } 
@@ -63,16 +65,16 @@ public class Movement : MonoBehaviour
                 mySpriteRenderer.sprite = up1;
                 mySpriteRenderer.flipX = false;
             } else{
-                mySpriteRenderer.sprite = up1;
-                mySpriteRenderer.flipX = true;
+                mySpriteRenderer.sprite = up2;
+                mySpriteRenderer.flipX = false;
             }
         } else if(movement.y < 0){
             if (animationFrame){
                 mySpriteRenderer.sprite = down1;
                 mySpriteRenderer.flipX = false;
             } else{
-                mySpriteRenderer.sprite = down1;
-                mySpriteRenderer.flipX = true;
+                mySpriteRenderer.sprite = down2;
+                mySpriteRenderer.flipX = false;
             }
         }
 
