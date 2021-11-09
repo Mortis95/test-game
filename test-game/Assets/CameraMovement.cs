@@ -17,27 +17,29 @@ public class CameraMovement : MonoBehaviour
 
     //Late Update runs immediately after update - Make sure player has finished moving before we try to adjust camera every frame
    void LateUpdate(){
-       Vector3 screenPosition = Input.mousePosition;
-       Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-       Vector3 cameraPos = (player.position + worldPosition) / 2;
+       if (player != null){
+            Vector3 screenPosition = Input.mousePosition;
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+            Vector3 cameraPos = (player.position + worldPosition) / 2;
 
-        float xToPlayer = cameraPos.x - player.position.x;
-        float yToPlayer = cameraPos.y - player.position.y; 
+                float xToPlayer = cameraPos.x - player.position.x;
+                float yToPlayer = cameraPos.y - player.position.y; 
 
-       if (xToPlayer > maxXDistance){
-           cameraPos.x = player.position.x + maxXDistance;
-       } else if (xToPlayer < -maxXDistance){
-           cameraPos.x = player.position.x - maxXDistance;
-       }
-       if(yToPlayer > maxYDistance){
-           cameraPos.y = player.position.y + maxYDistance;
-       } else if(yToPlayer < -maxYDistance){
-           cameraPos.y = player.position.y - maxYDistance;
-       }
-       
-       Vector3 desiredPosition = cameraPos + offset;
-       Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothness);
-       transform.position = smoothedPosition;
+            if (xToPlayer > maxXDistance){
+                cameraPos.x = player.position.x + maxXDistance;
+            } else if (xToPlayer < -maxXDistance){
+                cameraPos.x = player.position.x - maxXDistance;
+            }
+            if(yToPlayer > maxYDistance){
+                cameraPos.y = player.position.y + maxYDistance;
+            } else if(yToPlayer < -maxYDistance){
+                cameraPos.y = player.position.y - maxYDistance;
+            }
+            
+            Vector3 desiredPosition = cameraPos + offset;
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothness);
+            transform.position = smoothedPosition;
+        }
        
    }
 }
